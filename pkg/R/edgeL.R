@@ -7,3 +7,10 @@ edgeL <- function(tree, nx) {
 	node <- tree@edge[,2]
 	return(tree@edge.length[node %in% nx])
 	}
+
+## Tests if the given node number is the root
+
+is.root <- function(tree, x) {
+	if ( length(ancestor(tree, x))>0 ) return(FALSE)
+	else return(TRUE)
+	}
