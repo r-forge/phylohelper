@@ -5,7 +5,6 @@
 distPlot <- function (tree,char,dist.method="manhattan",scheme="color",circles="small"){
 	
 	require(ape)
-	source("half_circ.R")
 
 	if (is.ultrametric(tree)==F) {
 		tree<-chronogram(tree)
@@ -72,8 +71,13 @@ for (j in 1:length(centxvec)){
 	final<-data.frame(df,coldf,
 	row.names=c(1:length(coldf$vec1bind)))
 	
-		#maxX<-max(treeD)
-	   # maxY<-max(charD)
+	half_circ<-function(centx,centy,r,col1,col2){
+        theta<-seq(-pi,pi,length=100)
+        polygon(centx+r*sin(theta),centy+r*cos(theta), col=col1)
+        theta<-seq(-pi,0,length=50)
+        polygon(centx+r*sin(theta),centy+r*cos(theta), col=col2)
+	}
+
 	
 	#plot.new()
 	par(mfrow=c(1,2))
