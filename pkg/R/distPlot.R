@@ -2,9 +2,11 @@
 ## By Katie Wagner and Marc Cadotte
 ## Aug 2008
 
-distPlot <- function (tree,char,dist.method="manhattan",scheme="color",circles="small"){
+distPlot <- function 
+(tree,char, dist.method="manhattan",scheme="color",circles="small",comparison="tree-char") {
 	
 	require(ape)
+if (comparison=="tree-char") {
 
 	if (is.ultrametric(tree)==F) {
 		tree<-chronogram(tree)
@@ -27,6 +29,12 @@ distPlot <- function (tree,char,dist.method="manhattan",scheme="color",circles="
 			print("Need 2 column dataframe!")
 			char=0
 			}	
+		}
+
+if (comparison == "char-char") {
+	treeD<-tree
+	 charD<-char
+	}
 
 treeD[lower.tri(treeD)]<-NA
 charD[lower.tri(charD)]<-NA
@@ -78,6 +86,7 @@ for (j in 1:length(centxvec)){
         polygon(centx+r*sin(theta),centy+r*cos(theta), col=col2)
 	}
 
+if (comparison=="tree-char") {
 	
 	#plot.new()
 	par(mfrow=c(1,2))
@@ -126,7 +135,53 @@ if (scheme=="grey") {
 	}
 	plot(tree,tip.color=cols)
 	}
+	}
 	
+	if (comparison=="char-char") {
+	
+	plot(0,0,type="n",xlim=c(min(final$X0),1),
+	ylim=c(min(final$X0.1),1),
+	xlab="Relative character distance 1",
+	ylab="Relative character distance 2",asp=T)
+	
+	maxX<-max(final$X0)-min(final$X0)
+	
+	if (circles=="small"){
+		r=((1/40)*maxX)
+	}
+	
+	if (circles=="large"){
+	r=((1/25)*maxX)
+	}
+
+if (scheme=="color") {
+
+	cols<-rainbow(length(centyvec))
+
+	for (i in 1:length(final$X0)){
+
+		half_circ(centx=final$X0[i],
+		centy=final$X0.1[i],
+		r,
+		col1=cols[final$vec1bind[i]],
+		col2=cols[final$vec2bind[i]])
+	}
+	}
+
+if (scheme=="grey") {
+
+	cols<-c("black",colors()[262:361])
+
+	for (i in 1:length(final$X0)){
+
+		half_circ(centx=final$X0[i],
+		centy=final$X0.1[i],
+		r,
+		col1=cols[final$vec1bind[i]],
+		col2=cols[final$vec2bind[i]])
+	}
+	}
+	}
 
 	
   	
