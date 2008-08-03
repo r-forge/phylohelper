@@ -82,15 +82,17 @@ for (j in 1:length(centxvec)){
 	#plot.new()
 	par(mfrow=c(1,2))
 	#frame()
-	plot(0,0,type="n",xlim=c(0,1),ylim=c(0,1),xlab="Relative phylogenetic distance",
+	plot(0,0,type="n",xlim=c(min(final$X0),1),
+	ylim=c(min(final$X0.1),1),
+	xlab="Relative phylogenetic distance",
 	ylab="Relative character distance",asp=T)
 	
 	if (circles=="small"){
-		r=((1/40)*maxX)
+		r=((1/60)*maxX)
 	}
 	
 	if (circles=="large"){
-	r=((1/20)*maxX)
+	r=((1/25)*maxX)
 	}
 
 if (scheme=="color") {
