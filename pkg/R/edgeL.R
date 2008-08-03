@@ -5,6 +5,7 @@
 ###   edgeL(tree4, "Homo")
 ###   edgeL(tree4, c("Homo", "Galago"))
 
+
 edgeL <- function(tree, nx) {
 	if (is.numeric(nx)) {
 		node <- tree@edge[,2]
@@ -21,3 +22,6 @@ is.root <- function(tree, x) {
 	if ( length(ancestor(tree, x))>0 ) return(FALSE)
 	else return(TRUE)
 	}
+
+
+### FIX MRCA: self, self should be self, not ancestor.
