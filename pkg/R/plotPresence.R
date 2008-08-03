@@ -4,14 +4,12 @@
 
 
 ## TODO - try to see if node labels are preserved if the initial tree has some
-## TODO - generalize to use data in all columns, for now only the data found
-##        in the first column are plotted
-## TODO - write a function that checks that the data contains only 0 and 1
 ## TODO - provide arguments for plotting
-## TODO - provide options for returning data/plotting
 ## TODO - write documentation
 
-plotPresence <- function(tree, presenceData, plotResults = TRUE, returnData = TRUE) {
+plotPresence <- function(tree, presenceData, plotResults = TRUE,
+                         returnData = TRUE, colEdges = c("red", "blue"), ...) {
+    ## ... for further plotting arguments
     stopifnot(require(phylobase)) ## can be removed once we document dependencies
 
     if(!all(unlist(presenceData) %in% c(0,1)))
@@ -84,8 +82,6 @@ plotPresence <- function(tree, presenceData, plotResults = TRUE, returnData = TR
         PrAbsLoc <- unlist(PrAbsLoc)
     })
 
-
-
     if(plotResults) {
         if(ncol(presenceData) > 5) {
             stillPlot <- readline("Warning: You are about to plot more than 5 windows.\n
@@ -97,9 +93,12 @@ plotPresence <- function(tree, presenceData, plotResults = TRUE, returnData = TR
 
         if(stillPlot == "yes") {
             plotEdges <- lapply(lEdges, function(eachLoc) {
-                colEdge <- unlist(lapply(eachLoc == 1, function(x) if(x) "red" else "blue"))
+                vectorColEdge <- unlist(lapply(eachLoc == 1,
+                                         function(x)
+                                         if(x) colEdges[1]
+                                         else colEdges[2]))
                 eval(call(options()$device))
-                plot(treePhy, edge.color = colEdge)
+                plot(treePhy, edge.color = vectorColEdge, ...)
             })
         }
     }
