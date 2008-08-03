@@ -101,6 +101,11 @@ for (j in 1:length(centxvec)){
 	choosecols<-seq(1,length(colorvec),by=div)
 	cols<-colorvec[choosecols]
 	
+	colorvec<-c(colors()[262:361],"black")
+	div<-(floor(length(colorvec)/length(unique(final$vec1bind))))
+	choosecols<-seq(1,length(colorvec),by=div)
+	colg<-colorvec[choosecols]
+	
 if (comparison=="tree-char") {
 	
 	
@@ -124,7 +129,7 @@ if (scheme=="color") {
 
 if (scheme=="grey") {
 
-	cols<-c(colors()[262:361],"black")
+	cols<-colg
 
 	for (i in 1:length(final$X0)){
 
@@ -170,8 +175,8 @@ if (scheme=="color") {
 	}
 
 if (scheme=="grey") {
-
-	cols<-c(colors()[262:361],"black")
+	
+	cols<-colg
 
 	for (i in 1:length(final$X0)){
 
@@ -181,6 +186,17 @@ if (scheme=="grey") {
 		col1=cols[final$vec1bind[i]],
 		col2=cols[final$vec2bind[i]])
 	}
+		frame()
+	plot.window(xlim=c(1,4),ylim=c(1,length(charD[1,])))
+	points(rep(1,times=length(charD[1,])),
+		c(length(charD[1,]):1),
+		col="black",
+		bg=cols[length(charD[1,]):1],
+		pch=21,
+		cex=1.1)
+	text(rep(2,times=length(charD[1,])),
+		c(length(charD[1,])):1,
+		label=rownames(charD))
 	}
 	}
 
