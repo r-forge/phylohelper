@@ -1,77 +1,34 @@
 \name{contree}
 \alias{contree}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{ ~~function to do ... ~~ }
+\title{MrBayes Contree Plot}
 \description{
-  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
+	
+	Reads in a .con file from the sumt command in MrBayes and plots the  consensus tree with posterior probabilities with an option to save it to a .pdf file.
+
+  }
 \usage{
 contree(confile = confile, brlens = F, savepdf = F)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
-  \item{confile}{ ~~Describe \code{confile} here~~ }
-  \item{brlens}{ ~~Describe \code{brlens} here~~ }
-  \item{savepdf}{ ~~Describe \code{savepdf} here~~ }
-}
-\details{
-  ~~ If necessary, more details than the description above ~~
+  \item{confile}{ A .con file from MrBayes in the working directory. }
+  \item{brlens}{ If brlens=T then uses branchlengths from file.  If brlens=F then plots ultrametric tree with grafen branchlengths.  }
+  \item{savepdf}{ If savepdf=T then the plot is saved to a .pdf named "file name.pdf" }
 }
 \value{
   ~Describe the value returned
   If it is a LIST, use
-  \item{comp1 }{Description of 'comp1'}
-  \item{comp2 }{Description of 'comp2'}
+  \item{comp1 }{A plot.}
+  \item{comp2 }{A plot sent to .pdf.}
   ...
 }
-\references{ ~put references to the literature/web site here ~ }
-\author{ ~~who you are~~ }
-\note{ ~~further notes~~ 
+\references{ Ronquist F. and Huelsenbeck J.P. (2003)  MrBayes 3: Bayesian phylogenetic inference under mixed models.  Bioinformatics 19(12)1572-1574}
+\author{ Stacey D. Smith \email {sds21@duke.edu} and Zofia A. Kaliszewska \email{zakalisz@fas.harvard.edu} }
 
- ~Make other sections like Warning with \section{Warning }{....} ~
-}
-\seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (confile = confile, brlens = F, savepdf = F) 
-{
-    library(ape)
-    x <- read.nexus(file = confile)
-    pptree <- x[[1]]
-    plot(pptree)
-    if (brlens == T) {
-        plot(pptree)
-        nodelabels(pptree$node.label, adj = c(1.2, -0.5), frame = "n", 
-            cex = 0.8, font = 2)
-    }
-    else if (brlens == F) {
-        plot(pptree, use.edge.length = F)
-        nodelabels(pptree$node.label, adj = c(1.2, -0.5), frame = "n", 
-            cex = 0.8, font = 2)
-    }
-    if (savepdf == T) {
-        if (brlens == T) {
-            pdf(file = "contree\%02d.pdf")
-            plot(pptree)
-            nodelabels(pptree$node.label, adj = c(1.2, -0.5), 
-                frame = "n", cex = 0.8, font = 2)
-            dev.off()
-        }
-        else if (brlens == F) {
-            pdf(file = "contree\%02d.pdf")
-            plot(pptree, use.edge.length = F)
-            nodelabels(pptree$node.label, adj = c(1.2, -0.5), 
-                frame = "n", cex = 0.8, font = 2)
-            dev.off()
-        }
-    }
-  }
-}
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+	
+	contree(confile="carnivore.con", brlens=F, savepdf=T)
+	
+	}
+\keyword{ print }
+\keyword{ hplot }

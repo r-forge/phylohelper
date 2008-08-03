@@ -1,0 +1,13 @@
+#NEXUS
+
+[ID: 0418545018]
+begin trees;
+   [Note: This tree contains information on the topology, 
+          branch lengths (if present), and the probability
+          of the partition indicated by the branch.]
+   tree con_50_majrule = (mole:0.242236,(dog:0.114069,(((racoon:0.063253,weasel:0.072180)1.00:0.032084,(seal:0.030825,(walrus:0.013560,sealion:0.016250)1.00:0.016274)1.00:0.050720)0.91:0.006170,bear:0.066537)1.00:0.035046)1.00:0.037446,(cat:0.041282,(hyaena:0.058460,civet:0.043641)0.84:0.005764)1.00:0.047082);
+
+   [Note: This tree contains information only on the topology
+          and branch lengths (mean of the posterior probability density).]
+   tree con_50_majrule = (mole:0.242236,(dog:0.114069,(((racoon:0.063253,weasel:0.072180):0.032084,(seal:0.030825,(walrus:0.013560,sealion:0.016250):0.016274):0.050720):0.006170,bear:0.066537):0.035046):0.037446,(cat:0.041282,(hyaena:0.058460,civet:0.043641):0.005764):0.047082);
+end;
