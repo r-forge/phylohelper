@@ -76,8 +76,7 @@ for (j in 1:length(centxvec)){
 
 	coldf<-data.frame(cbind(vec1bind,vec2bind))
 	df<-data.frame(df[1]/max(df[1]),df[2]/max(df[2]))
-	final<-data.frame(df,coldf,
-	row.names=c(1:length(coldf$vec1bind)))
+	final<-data.frame(df,coldf)
 	
 	half_circ<-function(centx,centy,r,col1,col2){
         theta<-seq(-pi,pi,length=100)
@@ -158,15 +157,15 @@ if (scheme=="color") {
 		col2=cols[final$vec2bind[i]])
 	}
 	frame()
-	plot.window(xlim=c(1,4),ylim=c(1,length(unique(final$vec1bind))))
-	points(rep(1,times=length(unique(final$vec1bind))),
-		c(length(unique(final$vec1bind))):1,
+	plot.window(xlim=c(1,4),ylim=c(1,length(charD[1,])))
+	points(rep(1,times=length(charD[1,])),
+		c(length(charD[1,]):1),
 		col="black",
-		bg=cols[length(unique(final$vec1bind)):1],
+		bg=cols[length(charD[1,]):1],
 		pch=21,
-		cex=1.1	)
-	text(rep(2,times=length(unique(final$vec1bind))),
-		c(length(unique(final$vec1bind))):1,
+		cex=1.1)
+	text(rep(2,times=length(charD[1,])),
+		c(length(charD[1,])):1,
 		label=rownames(charD))
 	}
 
