@@ -86,18 +86,9 @@ for (j in 1:length(centxvec)){
         polygon(centx+r*sin(theta),centy+r*cos(theta), col=col2)
 	}
 
-if (comparison=="tree-char") {
-	
-	#plot.new()
 	par(mfrow=c(1,2))
-	#frame()
-	plot(0,0,type="n",xlim=c(min(final$X0),1),
-	ylim=c(min(final$X0.1),1),
-	xlab="Relative phylogenetic distance",
-	ylab="Relative character distance",asp=T)
-	
 	maxX<-max(final$X0)-min(final$X0)
-	
+
 	if (circles=="small"){
 		r=((1/40)*maxX)
 	}
@@ -106,9 +97,20 @@ if (comparison=="tree-char") {
 	r=((1/25)*maxX)
 	}
 
-if (scheme=="color") {
+	colorvec<-hsv(seq(0,0.8,by=0.01),1,1,alpha=0.7)
+	div<-(floor(length(colorvec)/length(unique(final$vec1bind))))
+	choosecols<-seq(1,length(colorvec),by=div)
+	cols<-colorvec[choosecols]
+	
+if (comparison=="tree-char") {
+	
+	
+	plot(0,0,type="n",xlim=c(min(final$X0),1),
+	ylim=c(min(final$X0.1),1),
+	xlab="Relative phylogenetic distance",
+	ylab="Relative character distance",asp=T)
 
-	cols<-rainbow(length(centyvec))
+if (scheme=="color") {
 
 	for (i in 1:length(final$X0)){
 
@@ -123,7 +125,7 @@ if (scheme=="color") {
 
 if (scheme=="grey") {
 
-	cols<-c("black",colors()[262:361])
+	cols<-c(colors()[262:361],"black")
 
 	for (i in 1:length(final$X0)){
 
@@ -144,19 +146,8 @@ if (scheme=="grey") {
 	xlab="Relative character distance 1",
 	ylab="Relative character distance 2",asp=T)
 	
-	maxX<-max(final$X0)-min(final$X0)
 	
-	if (circles=="small"){
-		r=((1/40)*maxX)
-	}
-	
-	if (circles=="large"){
-	r=((1/25)*maxX)
-	}
-
 if (scheme=="color") {
-
-	cols<-rainbow(length(centyvec))
 
 	for (i in 1:length(final$X0)){
 
@@ -170,7 +161,7 @@ if (scheme=="color") {
 
 if (scheme=="grey") {
 
-	cols<-c("black",colors()[262:361])
+	cols<-c(colors()[262:361],"black")
 
 	for (i in 1:length(final$X0)){
 
