@@ -3,8 +3,7 @@ Type: Package
 Title: Provides functions useful for phylogenetic comparative analysis, enhancing the phylobase, ape, and ouch packages.
 Version: 0.1-0
 Date: 2008-08-01
-Author: Brian O'Meara, Marguerite Butler, Ada Kaliszewska, Francois Michonneau, Ivalu Cacho, Jonathan Davies, Katie Wagner, Marc Cadotte
-Mark Cornwall, Michael McKain, Scott Loarie, Stacey Smith, Thomas Clarke
+Author: Brian O'Meara, Marguerite Butler, Ada Kaliszewska, Francois Michonneau, Ivalu Cacho, Jonathan Davies, Katie Wagner, Marc Cadotte, Mark Cornwall, Michael McKain, Scott Loarie, Stacey Smith, Thomas Clarke
 Maintainer: Marguerite Butler <mbutler@hawaii.edu>
 Description: A collection of convenience functions, analyses, and plots useful to the evolutionary biology community.
 Depends: R(>= 2.7.1)
