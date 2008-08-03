@@ -157,6 +157,17 @@ if (scheme=="color") {
 		col1=cols[final$vec1bind[i]],
 		col2=cols[final$vec2bind[i]])
 	}
+	frame()
+	plot.window(xlim=c(1,4),ylim=c(1,length(unique(final$vec1bind))))
+	points(rep(1,times=length(unique(final$vec1bind))),
+		c(length(unique(final$vec1bind))):1,
+		col="black",
+		bg=cols[length(unique(final$vec1bind)):1],
+		pch=21,
+		cex=1.1	)
+	text(rep(2,times=length(unique(final$vec1bind))),
+		c(length(unique(final$vec1bind))):1,
+		label=rownames(charD))
 	}
 
 if (scheme=="grey") {
