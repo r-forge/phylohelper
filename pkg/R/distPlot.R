@@ -5,7 +5,6 @@
 distPlot <- function 
 (tree,char, dist.method="manhattan",scheme="color",circles="small",comparison="tree-char") {
 	
-	require(ape)
 if (comparison=="tree-char") {
 
 	if (is.ultrametric(tree)==F) {
