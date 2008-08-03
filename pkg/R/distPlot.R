@@ -87,8 +87,10 @@ for (j in 1:length(centxvec)){
 	xlab="Relative phylogenetic distance",
 	ylab="Relative character distance",asp=T)
 	
+	maxX<-max(final$X0)-min(final$X0)
+	
 	if (circles=="small"){
-		r=((1/60)*maxX)
+		r=((1/40)*maxX)
 	}
 	
 	if (circles=="large"){
@@ -126,7 +128,6 @@ if (scheme=="grey") {
 	}
 	
 
-	return(final)
 	
   	
 }
