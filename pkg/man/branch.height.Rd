@@ -1,41 +1,35 @@
 \name{branch.height}
 \alias{branch.height}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{ ~~function to do ... ~~ }
+\alias{assign.lengths}
+
+\title{Branch length functions}
 \description{
-  ~~ A concise (1-5 lines) description of what the function does. ~~
+Computes the height (sum of branch lengths from root to the given node) or the branch length of the given node.
 }
 \usage{
 branch.height(node, anc, bl, k)
+assign.lengths(node, anc, newbl, k)
+count.nodes(node, anc, bln, k)
+
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{node}{ ~~Describe \code{node} here~~ }
-  \item{anc}{ ~~Describe \code{anc} here~~ }
-  \item{bl}{ ~~Describe \code{bl} here~~ }
-  \item{k}{ ~~Describe \code{k} here~~ }
-}
-\details{
-  ~~ If necessary, more details than the description above ~~
+  \item{node}{a vector containing node numbers }
+  \item{anc}{ a vector containing ancestor numbers }
+  \item{bl}{ vector of branch lengths }
+  \item{newbl}{ vector of branch lengths }
+  \item{bln}{ vector of branch lengths as number of nodes from root }
+  \item{k}{ the node to go backwards on }
 }
 \value{
-  ~Describe the value returned
-  If it is a LIST, use
-  \item{comp1 }{Description of 'comp1'}
-  \item{comp2 }{Description of 'comp2'}
-  ...
+ a numerical value, the branch height or vector of branch lengths
 }
-\references{ ~put references to the literature/web site here ~ }
-\author{ ~~who you are~~ }
-\note{ ~~further notes~~ 
+\author{ Marguerite Butler and Aaron King }
+\note{ This uses a recursion. There may be a faster algorithm. 
 
- ~Make other sections like Warning with \section{Warning }{....} ~
 }
-\seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+
 
 ## The function is currently defined as
 function (node, anc, bl, k) 
@@ -50,5 +44,5 @@ function (node, anc, bl, k)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ phylogeny }
+\keyword{ branch lengths }
