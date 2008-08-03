@@ -1,5 +1,5 @@
-\name{%w/o%}
-\alias{%w/o%}
+\name{"%w/o%"}
+\alias{"%w/o%"}
 \title{ Miscellaneous functions}
 \description{
 A collection of useful functions
