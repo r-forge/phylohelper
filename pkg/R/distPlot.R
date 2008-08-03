@@ -22,7 +22,7 @@ if (comparison=="tree-char") {
 		rownames(char)<-char$rname
 		
 		charD<-as.matrix(dist(char[2],method=dist.method))
-		treeD<-as.matrix(as.dist(2*max(tree$edge.length)-2*(vcv.phylo(tree))))
+		treeD<-as.matrix(cophenetic(tree))
 		
 		}
 	if (class(char)!="data.frame")	 {
