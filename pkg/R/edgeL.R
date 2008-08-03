@@ -23,5 +23,11 @@ is.root <- function(tree, x) {
 	else return(TRUE)
 	}
 
+## Gets node index(position in edge matrix) based on node name or number. Returns 0 for root
+
+nodenum <- function(tree, node) {
+	if (is.root(tree, node)) return (0)
+	else return( which(tree@edge[,2] == getnodes(tree, node))) 
+	}
 
 ### FIX MRCA: self, self should be self, not ancestor.
