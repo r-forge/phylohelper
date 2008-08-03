@@ -15,6 +15,7 @@ distPlot(tree,char,dist.method="manhattan",scheme="color",circles="small")
   \item{dist.method}{ Select distance method for constructing character distance matrix. This must be one of "euclidean", "maximum", "manhattan", "canberra", "binary" or "minkowski". }
   \item{scheme}{ Set "color" or "grey" for graphic output. }
   \item{circles}{ Set point size as "small" or "large" }
+  \item{comparison}{ Default is for a phylogeny and character dataframe ("tree-char"), but user can input two character distance matrices by selecting "char-char". }
 }
 \details{
   ~~ If necessary, more details than the description above ~~
