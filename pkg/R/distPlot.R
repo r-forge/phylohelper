@@ -1,0 +1,128 @@
+## Plotter of 2 distance matrices (phylogeny and character)
+## By Katie Wagner and Marc Cadotte
+## Aug 2008
+
+distPlot <- function (tree,char,dist.method="manhattan",scheme="color",circles="small"){
+	
+	require(ape)
+	source("half_circ.R")
+
+	if (is.ultrametric(tree)==F) {
+		tree<-chronogram(tree)
+		}
+		
+		
+	if (class(char)=="data.frame") {
+		
+		names(char)<-c("rname","char")
+		s.ord<-match(tree$tip.label,char$rname)
+		char<-char[s.ord,]
+		
+		rownames(char)<-char$rname
+		
+		charD<-as.matrix(dist(char[2],method=dist.method))
+		treeD<-as.matrix(as.dist(2*max(tree$edge.length)-2*(vcv.phylo(tree))))
+		
+		}
+	if (class(char)!="data.frame")	 {
+			print("Need 2 column dataframe!")
+			char=0
+			}	
+
+treeD[lower.tri(treeD)]<-NA
+charD[lower.tri(charD)]<-NA
+
+df<-data.frame()
+
+for (i in 1:length(rownames(treeD))){
+
+	#phylo matrix
+	centxvec<-treeD[i,]
+	#character matrix
+	centyvec<-charD[i,]
+
+	for (j in i:length(centxvec)){
+		x<-centxvec[j]
+		y<-centyvec[j]
+		
+		if (!is.na(x) | !is.na(y))
+			vec<-c(x,y)
+			df<-data.frame(rbind(df,vec))	
+	}		
+}	
+
+df<-df[df$X0!=0 & df$X0.1!=0,]
+
+vec1bind<-NULL
+vec2bind<-NULL
+	
+for (j in 1:length(centxvec)){
+	vec1<-rep(j,times=length(centxvec)-j)
+	
+	vec1bind<-c(vec1bind,vec1)
+	
+	if (j<length(centxvec)) {
+	vec2<-(j+1):length(centxvec)
+	vec2bind<-c(vec2bind,vec2)
+	}	
+}
+
+	coldf<-data.frame(cbind(vec1bind,vec2bind))
+	df<-data.frame(df[1]/max(df[1]),df[2]/max(df[2]))
+	final<-data.frame(df,coldf,
+	row.names=c(1:length(coldf$vec1bind)))
+	
+		#maxX<-max(treeD)
+	   # maxY<-max(charD)
+	
+	#plot.new()
+	par(mfrow=c(1,2))
+	#frame()
+	plot(0,0,type="n",xlim=c(0,1),ylim=c(0,1),xlab="Relative phylogenetic distance",
+	ylab="Relative character distance",asp=T)
+	
+	if (circles=="small"){
+		r=((1/40)*maxX)
+	}
+	
+	if (circles=="large"){
+	r=((1/20)*maxX)
+	}
+
+if (scheme=="color") {
+
+	cols<-rainbow(length(centyvec))
+
+	for (i in 1:length(final$X0)){
+
+		half_circ(centx=final$X0[i],
+		centy=final$X0.1[i],
+		r,
+		col1=cols[final$vec1bind[i]],
+		col2=cols[final$vec2bind[i]])
+	}
+	plot(tree,tip.color=cols)
+	}
+
+if (scheme=="grey") {
+
+	cols<-c("black",colors()[262:361])
+
+	for (i in 1:length(final$X0)){
+
+		half_circ(centx=final$X0[i],
+		centy=final$X0.1[i],
+		r,
+		col1=cols[final$vec1bind[i]],
+		col2=cols[final$vec2bind[i]])
+	}
+	plot(tree,tip.color=cols)
+	}
+	
+
+	return(final)
+	
+  	
+}
+
+
