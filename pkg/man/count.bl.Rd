@@ -38,5 +38,6 @@ function (tree)
     tree.depth <- max(nnodes)
   }
 }
-\keyword{ phylogeny }
-\keyword{ cladogram }
+\keyword{ models }
+\keyword{ hplot }
+\keyword{ dplot }

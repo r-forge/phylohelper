@@ -44,5 +44,5 @@ function (node, anc, bl, k)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ phylogeny }
-\keyword{ branch lengths }
+\keyword{ models }
+\keyword{ methods }
