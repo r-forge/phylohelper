@@ -6,8 +6,8 @@ Date: 2008-08-01
 Author: Brian O'Meara, Marguerite Butler, Ada Kaliszewska, Francois Michonneau, Ivalu Cacho, Jonathan Davies, Katie Wagner, Marc Cadotte, Mark Cornwall, Michael McKain, Scott Loarie, Stacey Smith, Thomas Clarke
 Maintainer: Marguerite Butler <mbutler@hawaii.edu>
 Description: A collection of convenience functions, analyses, and plots useful to the evolutionary biology community.
-Depends: R(>= 2.7.1)
-Enhances: phylobase(>= 0.3), ape(>= 2.2), ouch(>= 2.9)
+Depends: R(>= 2.7.1), phylobase(>= 0.3), ape(>= 2.2)
+Enhances: ouch(>= 2.9)
 License: GPL 2.0
 LazyLoad: yes
 Packaged: Sat Aug  2 05:05:16 2008

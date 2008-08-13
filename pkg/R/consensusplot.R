@@ -8,7 +8,7 @@ branch.height <- function (node, anc, bl, k) {
   }
 }
 
-countnodes <- function(node, anc, bln, k) {
+count.nodes <- function(node, anc, bln, k) {
 
 	if (is.na(anc[k]) | is.numeric(bln[k])) {
 		0
@@ -40,22 +40,47 @@ count.bl <- function (tree)  {
 	stop(sQuote("tree"), " must be of class ",sQuote("phylo"))
 
   tree4 <- as(tree, "phylo4") 
-  tree4.dat <- as(tree4, "data.frame") 
-  oo <- order(tree4.dat$node)
-  tree4.dat <- tree4.dat[oo,]
+  tdat <- as(tree4, "data.frame")[-1,]
+tdat$ape_order <- 1:nrow(tdat)
+tdat <- tdat[order(tdat$node),]
+#  oo <- order(tdat$node)
 
-  attach(tree4.dat)  # label node ancestor branch.length node.type
+  ape_order <- 1:length(tdat$node)
+  oo <- order(tdat$node)
+  tdat <- tdat[oo,]
   
-  stepstoroot <- sapply(node, function(k) count.nodes(node, ancestor, rep(NA, length(node)), k))
-
-  ti <- which(node.type=="tip") 
-  tips <- node[ti]
-  tsteps <- stepstoroot[ti]
-
-  bln <- rep(NA, length(node))
-
-  treeheight <- maxsteps <- max(stepstoroot)
+  node <- tdat$node
+  label <- tdat$label
+  ancestor <- tdat$ancestor
+  branch.length <- tdat$branch.length
+  node.type <- tdat$node.type
+ 
+  lineages <- lapply(node, function(x) ancestors(tree4, x))
+  stepstoroot <- sapply(lineages, length)
   
+## assign heights to terminal taxa, max tree height. root = 0
+  height <- rep(NA, length(node))
+  height[node.type=="tip"] <- maxsteps <- max(stepstoroot)
+  
+## split nodes into groups by steps to root
+  nodebysteps <- split(node, stepstoroot)
+  
+## Pair up nodes to form "cherries" (nodes grouped by ancestor), still grouped by steps to root
+## then reverse order by steps
+  cherries_steps <- lapply(nodebysteps, 
+                      function(x) {
+                      	split(x, ancestor[x])
+                      }
+                    )[ as.character(maxsteps:1) ]
+                    
+## Calculate the height of each ancestor, need loop because calculations are iterative                   
+  for (cherries in cherries_steps) {
+  	 hh <- sapply( cherries,
+  	                 function(cherry)
+  	                 {
+  	                 	  height[unique]})}                    
+                    
+                    
   cherries <- which(stepstoroot==maxsteps)  # find cherries
   
   pairs <- split(cherries, ancestor[cherries])  # identify pairs

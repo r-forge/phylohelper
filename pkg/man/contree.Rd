@@ -23,7 +23,7 @@ contree(confile = confile, brlens = F, savepdf = F)
   ...
 }
 \references{ Ronquist F. and Huelsenbeck J.P. (2003)  MrBayes 3: Bayesian phylogenetic inference under mixed models.  Bioinformatics 19(12)1572-1574}
-\author{ Stacey D. Smith \email {sds21@duke.edu} and Zofia A. Kaliszewska \email{zakalisz@fas.harvard.edu} }
+\author{ Stacey D. Smith \email{sds21@duke.edu} and Zofia A. Kaliszewska \email{zakalisz@fas.harvard.edu} }
 
 \examples{
 	
